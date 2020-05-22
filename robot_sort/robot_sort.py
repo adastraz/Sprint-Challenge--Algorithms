@@ -97,8 +97,44 @@ class SortingRobot:
         Sort the robot's list.
         """
         # Fill this out
-        pass
+        self.set_light_on()
+        while self.light_is_on():
+            #initally assume is sorted
+            self.set_light_off()
 
+            while self.can_move_right():
+                #initally pickup, compare to next
+                self.swap_item()
+                self.move_right()
+                #if true, we can now say is not sorted - keep swapping
+                if self.compare_item == 1:
+                    self.swap_item()
+                    self.set_light_on()
+
+            #there is no method to move all the way to beginning, initally making me want to steer away from bubblesort, but who says you can't bubble backwards
+            while self.can_move_left():
+                self.swap_item()
+                self.move_left()
+                #again, if true, there is more to be swapped
+                if self.compare_item() == -1:
+                    self.swap_item()
+                    self.set_light_on()
+            #if gone through both while, and not reached if, will break, and be in sorted order
+            #places last at none or takes first to compare to next
+            self.swap_item()
+
+'''
+
+THE PLAN!!
+
+Implement a variation of a bubblesort!
+compare all the way down - find largest on way up each pickup by comparing until moveright is false
+then moveleft until moveleft is false, compare, if -1 swap, compare etc
+
+
+end - when light is off - nothing to sort
+
+'''
 
 if __name__ == "__main__":
     # Test our your implementation from the command line
