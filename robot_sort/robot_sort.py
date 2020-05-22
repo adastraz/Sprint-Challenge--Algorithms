@@ -107,10 +107,10 @@ class SortingRobot:
                 self.swap_item()
                 self.move_right()
                 #if true, we can now say is not sorted - keep swapping
-                if self.compare_item == 1:
+                if self.compare_item() == 1:
                     self.swap_item()
                     self.set_light_on()
-
+            self.swap_item()
             #there is no method to move all the way to beginning, initally making me want to steer away from bubblesort, but who says you can't bubble backwards
             while self.can_move_left():
                 self.swap_item()
